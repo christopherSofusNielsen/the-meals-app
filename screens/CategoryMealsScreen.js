@@ -1,5 +1,6 @@
 import React from "react";
-import { CATEGORIES, MEALS } from "../data/dummy-data";
+import { useSelector } from "react-redux";
+import { CATEGORIES } from "../data/dummy-data";
 
 //components
 import MealList from "../components/MealList";
@@ -9,7 +10,8 @@ const findCategory = (catId) => {
 };
 
 const findMeals = (catId) => {
-  return MEALS.filter((meal) => {
+  const availableMeals = useSelector((state) => state.meals.filteredMeals);
+  return availableMeals.filter((meal) => {
     return meal.categoryIds.indexOf(catId) >= 0;
   });
 };
